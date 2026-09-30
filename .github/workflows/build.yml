@@ -1,0 +1,23 @@
+name: Build Windows Binary
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+        
+      - name: Build release binary
+        run: cargo build --release
+        
+      - name: Upload binary artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: month_13
+          path: month-13/target/release/month_13.exe
