@@ -15,9 +15,10 @@ jobs:
         
       - name: Build release binary
         run: cargo build --release
+        working-directory: month-13   # <-- Tells it to run inside the subfolder
         
       - name: Upload binary artifact
         uses: actions/upload-artifact@v4
         with:
-          name: month_13
-          path: month-13/target/release/month_13.exe
+          name: month-13-windows
+          path: month-13/target/release/month_13.exe  # <-- Matches the subfolder path
