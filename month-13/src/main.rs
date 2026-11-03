@@ -36,7 +36,7 @@ fn conv_to_13(date: NaiveDate) -> String {
 
     let month_13 =
         MONTHS[(((offset_days_into_year - 1) / DAYS_MONTH + 1) - 1) as usize].to_string();
-    let week_day_13 = WEEK_DAYS[((offset_days_into_year - 1) % 7 + 1) as usize].to_string();
+    let week_day_13 = WEEK_DAYS[((offset_days_into_year - 1) % 7) as usize].to_string();
     let day_13 = (offset_days_into_year - 1) % DAYS_MONTH + 1;
     let ordinal_suffix =
         ORDINAL_SUFFIXES[((day_13 % 20 - 1) % 20).clamp(0, 3) as usize].to_string();
@@ -53,6 +53,6 @@ fn conv_to_13(date: NaiveDate) -> String {
 
 fn main() {
     let output: String = conv_to_13(chrono::Local::now().date_naive());
-    //let output: String = conv_to_13(NaiveDate::from_ymd(2026, 7, 1));
+    //let output: String = conv_to_13(NaiveDate::from_ymd(2026, 4, 1));
     println!("{}", output);
 }
